@@ -116,7 +116,7 @@
             }
             
             let STORAGE_KEY = 'cachedLinks';
-            let LINKS_URL = 'links/';
+            let LINKS_URL = 'links/links.json';
 
             function getLinks() {
                 // The links will be cached on the client side in case the server is unavailable.
