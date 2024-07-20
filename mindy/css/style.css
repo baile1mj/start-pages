@@ -1,0 +1,65 @@
+﻿@font-face {
+    font-family: 'KristenITC';
+    src: url('../fonts/ITCKRIST.TTF');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Afta Sans';
+    src: url('../fonts/AftaSansThin-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    font-size: 115%;
+}
+
+body {
+    background-color: #ebceff;
+    font-family: 'KristenITC', sans-serif;
+}
+
+hr { 
+    border: 0; 
+    height: 1px; 
+    width: 50%;
+    background: #333; 
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image: -o-linear-gradient(left, #ccc, #333, #ccc); 
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a:link { color: #90c; }
+a:active { color: #609; }
+a:visited { color: #c0f; }
+
+.link-container {
+    margin: 5px auto;
+}
+
+.settings-button {
+    margin: 5px;
+    color: #777;
+}
+
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-header, .modal-body, .modal-footer, .panel {
+    font-family: 'Afta Sans', Georgia, 'Times New Roman', Times, serif;
+}
+
+.pad-bottom {
+    margin-bottom: 10px;
+}

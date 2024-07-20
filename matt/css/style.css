@@ -1,0 +1,63 @@
+@font-face {
+	font-family: 'Afta Sans';
+	src: url('../fonts/afta-sans/AftaSansThin-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url('../fonts/montserrat/Montserrat-Medium.otf');
+}
+  
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: url('../fonts/montserrat/Montserrat-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Montserrat Light';
+  src: url('../fonts/montserrat/Montserrat-Light.otf');
+}
+
+@font-face {
+  font-family: 'Bitter Bold';
+  src: url('../fonts/bitter/Bitter-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Zantroke';
+  src: url('../fonts/zantroke/Zantroke.otf');
+}
+
+a:link { color: #000000; }
+a:visited { color: #000080; }
+a:active { color: #ff0000; }
+
+html, body {
+  height: 100%;
+  background-image: linear-gradient(to bottom, #A8BC80, #fff);
+  font-variant-ligatures: none;
+}
+
+body {
+	padding: 10px;
+	font-family: 'Montserrat Regular', 'Helvetica', sans-serif;
+  font-size: 150%;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Zantroke', 'Garamond', 'Times New Roman', serif;
+}
+
+.container {
+  background-color: #fff;
+  box-shadow: 0 0 5px #888;
+}
+
+.link-container {
+  padding: 5px;
+}
+
+#links-row {
+ margin-bottom: 20px;
+}
