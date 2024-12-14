@@ -106,8 +106,8 @@ angular
           Text: 'Central E-mail'
         },
         {
-          Url: 'http://centrallink.cmich.edu',
-          Text: 'CentralLink'
+          Url: 'https://cdr.voiply.com/index/375b44f7-5024-4043-a7fb-137193c00800',
+          Text: 'Voiply Call History'
         },
         {
           Url: 'http://blackboard.cmich.edu',
