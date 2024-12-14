@@ -38,8 +38,8 @@ angular
           Text: 'Reddit'
         },
         {
-          Url: 'http://boards.straightdope.com',
-          Text: 'SDMB'
+          Url: 'https://translate.google.com',
+          Text: 'Google Translate'
         },
         {
           Url: 'https://accounts.isabellabank.com/login',
@@ -54,8 +54,8 @@ angular
           Text: 'Discover'
         },
         {
-          Url: 'https://bankofamerica.com',
-          Text: 'Bank of America'
+          Url: 'http://boards.straightdope.com',
+          Text: 'SDMB'
         },
         {
           Url: 'https://pncpoints.pnc.com',
