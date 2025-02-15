@@ -1,45 +1,48 @@
 ﻿<!DOCTYPE html>
-<html data-ng-app="portalPageApp">
+<html lang="en-US">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Welcome to the Internet</title>
-	
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    
-    <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/angular.min.js" type="text/javascript"></script>
-    <script src="js/ui-bootstrap-tpls-0.13.0.min.js" type="text/javascript"></script>
-    <script src="js/app.js" type="text/javascript"></script>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/solid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/regular.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <script src="js/vue.global.js" type="text/javascript"></script>
+    <!--    <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>-->
+    <!--    <script src="js/bootstrap.min.js" type="text/javascript"></script>-->
+    <!--    <script src="js/angular.min.js" type="text/javascript"></script>-->
+    <!--    <script src="js/ui-bootstrap-tpls-0.13.0.min.js" type="text/javascript"></script>-->
+    <!--    <script src="js/app.js" type="text/javascript"></script>-->
 </head>
-<body data-ng-controller="pageController as p">
-    <div class="pull-right">
+<body>
+<div id="app">
+    <div>
         <a class="settings-button" href="" data-ng-click="p.editLinks()" style="color: #555;"><i class="fa fa-cog"></i></a>
     </div>
-    <div class="container">
-        <div class="row text-center" data-ng-show="!p.isReady && !p.errors">
-            <h1><i class="fa fa-circle-o-notch fa-spin"></i></h1>
+    <div>
+        <div id="loading-panel">
+            <i class="fa-solid fa-circle-notch fa-spin fa-5x"></i>
             <p>Loading, please wait...</p>
         </div>
-        <div id="errorRow" class="row hidden" data-ng-show="p.errors && p.isReady">
+        <div id="error-panel">
             <div class="col-sm-offset-2 col-sm-8">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        <button class="pull-right btn btn-xs bg-danger" data-ng-click="p.clearErrors()"><small><i class="glyphicon glyphicon-remove"></i></small></button>
+                        <button class="pull-right btn btn-xs bg-danger" data-ng-click="p.clearErrors()"><small><i
+                                class="glyphicon glyphicon-remove"></i></small></button>
                         <h1 class="panel-title"><i class="glyphicon glyphicon-exclamation-sign"></i> Error</h1>
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <li data-ng-repeat="e in p.errors">{{ e }}</li>
+<!--                            <li data-ng-repeat="e in p.errors">{{ e }}</li>-->
+                            <li v-for="error in errors">{{error}}</li>
                         </ul>
                         <p>
-                            If
-                            <span data-ng-show="p.errors.length == 1">this error persists,</span>
-                            <span data-ng-show="p.errors.length >= 1">these errors persist,</span>
+                            If {{ pluralize(errors, 'this error persists', 'these errors persist') }}
                             please contact the system administrator.
                         </p>
                     </div>
@@ -48,80 +51,103 @@
         </div>
         <div class="row">
             <div class="col-xs-12 text-center">
-                <img src="img/banner.gif" />
-                <hr />
+                <img src="img/banner.gif"/>
+                <hr/>
             </div>
         </div>
         <div class="row" data-ng-cloak>
             <div class="col-md-3 col-sm-6 col-xs-12 text-center" data-ng-repeat="link in p.links">
-                <div class="link-container"><a href="{{ link.Url }}">{{ link.Display }}</a></div>
+<!--                <div class="link-container"><a href="{{ link.Url }}">{{ link.Display }}</a></div>-->
             </div>
         </div>
     </div>
+</div>
+<script>
+    const { createApp, ref } = Vue
 
-    <script type="text/ng-template" id="linkEdit.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Edit Links</h3>
-        </div>
-        <div class="modal-body">
-            <div class="col-xs-12 bg-danger" data-ng-show="errorMessage">
-                <h4 class="text-danger">Error</h4>
-                <p class="text-danger">{{ errorMessage }}</p>
-            </div>
-            <table class="table">
-                <tr data-ng-repeat="link in links">
-                    <td>
-                        <button class="btn btn-xs btn-default" data-ng-click="moveUp($index)"><i class="glyphicon glyphicon-chevron-up"></i></button>
-                        <button class="btn btn-xs btn-default" data-ng-click="moveDown($index)"><i class="glyphicon glyphicon-chevron-down"></i></button>
-                    </td>
-                    <td>{{ link.Display }}</td>
-                    <td class="text-right">
-                        <button class="btn btn-xs btn-default" data-ng-click="editLink($index)">Edit</button>&nbsp;
-                        <button class="btn btn-xs btn-default" data-ng-click="deleteLink($index)">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <button class="btn btn-default" data-ng-click="addLink()"><i class="glyphicon glyphicon-plus-sign"></i> Add Link...</button>
-                    </td>
-                </tr>
-            </table>
+    createApp({
+        setup() {
+            const errors = ref(['Some error occurred'])
+            function pluralize(collection, single, plural) {
+                console.log('coll', collection)
+                console.log('len', collection.length)
+                if (collection.length === 1) {
+                    return single;
+                } else {
+                    return plural;
+                }
+            }
+            return {
+                errors,
+                pluralize
+            }
+        }
 
-        </div>
-        <div class="modal-footer">
-            <input class="btn btn-default" type="button" value="OK" data-ng-click="ok()" />
-            <input class="btn btn-default" type="button" value="Cancel" data-ng-click="cancel()" />
-        </div>
-    </script>
+    }).mount('#app')
+</script>
+<!--    <script type="text/ng-template" id="linkEdit.html">-->
+<!--        <div class="modal-header">-->
+<!--            <h3 class="modal-title">Edit Links</h3>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--            <div class="col-xs-12 bg-danger" data-ng-show="errorMessage">-->
+<!--                <h4 class="text-danger">Error</h4>-->
+<!--                <p class="text-danger">{{ errorMessage }}</p>-->
+<!--            </div>-->
+<!--            <table class="table">-->
+<!--                <tr data-ng-repeat="link in links">-->
+<!--                    <td>-->
+<!--                        <button class="btn btn-xs btn-default" data-ng-click="moveUp($index)"><i class="glyphicon glyphicon-chevron-up"></i></button>-->
+<!--                        <button class="btn btn-xs btn-default" data-ng-click="moveDown($index)"><i class="glyphicon glyphicon-chevron-down"></i></button>-->
+<!--                    </td>-->
+<!--                    <td>{{ link.Display }}</td>-->
+<!--                    <td class="text-right">-->
+<!--                        <button class="btn btn-xs btn-default" data-ng-click="editLink($index)">Edit</button>&nbsp;-->
+<!--                        <button class="btn btn-xs btn-default" data-ng-click="deleteLink($index)">Delete</button>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td colspan="5" class="text-center">-->
+<!--                        <button class="btn btn-default" data-ng-click="addLink()"><i class="glyphicon glyphicon-plus-sign"></i> Add Link...</button>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
 
-    <script type="text/ng-template" id="linkDetail.html">
-        <div class="modal-header">
-            <h3 class="modal-title">{{ title }}</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal" name="linkForm" novalidate>
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" for="url">Address</label>
-                    <div class="col-xs-8">
-                        <input class="form-control" type="url" id="url" name="url" placeholder="e.g. http://www.google.com" required data-ng-model="link.Url" />
-                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.url.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Required</span>
-                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.url.$error.url"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Invalid Format</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" for="display">Display Text</label>
-                    <div class="col-xs-8">
-                        <input class="form-control" type="text" id="display" name="display" placeholder="e.g. Google" required data-ng-model="link.Display" />
-                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.display.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Required</span>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <input class="btn btn-default" type="button" value="OK" data-ng-click="ok(linkForm)" />
-            <input class="btn btn-default" type="button" value="Cancel" data-ng-click="cancel()" />
-        </div>
-        
-    </script>
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--            <input class="btn btn-default" type="button" value="OK" data-ng-click="ok()" />-->
+<!--            <input class="btn btn-default" type="button" value="Cancel" data-ng-click="cancel()" />-->
+<!--        </div>-->
+<!--    </script>-->
+
+<!--    <script type="text/ng-template" id="linkDetail.html">-->
+<!--        <div class="modal-header">-->
+<!--            <h3 class="modal-title">{{ title }}</h3>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--            <form class="form-horizontal" name="linkForm" novalidate>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="col-xs-4 control-label" for="url">Address</label>-->
+<!--                    <div class="col-xs-8">-->
+<!--                        <input class="form-control" type="url" id="url" name="url" placeholder="e.g. http://www.google.com" required data-ng-model="link.Url" />-->
+<!--                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.url.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Required</span>-->
+<!--                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.url.$error.url"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Invalid Format</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="col-xs-4 control-label" for="display">Display Text</label>-->
+<!--                    <div class="col-xs-8">-->
+<!--                        <input class="form-control" type="text" id="display" name="display" placeholder="e.g. Google" required data-ng-model="link.Display" />-->
+<!--                        <span class="text-danger pull-right" data-ng-show="validating && linkForm.display.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Required</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--            <input class="btn btn-default" type="button" value="OK" data-ng-click="ok(linkForm)" />-->
+<!--            <input class="btn btn-default" type="button" value="Cancel" data-ng-click="cancel()" />-->
+<!--        </div>-->
+
+<!--    </script>-->
 </body>
 </html>
