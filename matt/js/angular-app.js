@@ -10,7 +10,7 @@ angular
           Text: 'Google'
         }, 
         {
-          Url: 'https://www.gocomics.com/mycomics/1626339',
+          Url: 'https://www.gocomics.com/profile/baile1mj/comics/181849',
           Text: 'GoComics'
         }, 
         {
