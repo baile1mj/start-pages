@@ -94,8 +94,8 @@ angular
           Text: 'Router Login'
         },
         {
-          Url: 'https://cdr.voiply.com/index/375b44f7-5024-4043-a7fb-137193c00800',
-          Text: 'Voiply Call History'
+          Url: 'https://voip.ms/signin/index.php?ln=en',
+          Text: 'VoIP.ms'
         },
         {
           Url: 'http://10.0.0.3:5000',
