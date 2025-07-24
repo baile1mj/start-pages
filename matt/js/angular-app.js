@@ -6,11 +6,11 @@ angular
       
       i.links = [
         {
-          Url: 'http://www.google.com',
+          Url: 'https://www.google.com',
           Text: 'Google'
         }, 
         {
-          Url: 'https://www.gocomics.com/mycomics/1626339',
+          Url: 'https://www.gocomics.com/profile/baile1mj/comics/181849',
           Text: 'GoComics'
         }, 
         {
@@ -18,23 +18,23 @@ angular
           Text: 'Weather Underground'
         },
         {
-          Url: 'http://www.google.com/calendar',
+          Url: 'https://www.google.com/calendar',
           Text: 'Google Calendar'
         },
         {
-          Url: 'http://keep.google.com/',
+          Url: 'https://keep.google.com/',
           Text: 'Google Keep'
         },
         {
-          Url: 'http://photos.google.com',
+          Url: 'https://photos.google.com',
           Text: 'Google Photos'
         },
         {
-          Url: 'http://maps.google.com',
+          Url: 'https://maps.google.com',
           Text: 'Google Maps'
         },
         {
-          Url: 'http://www.reddit.com',
+          Url: 'https://www.reddit.com',
           Text: 'Reddit'
         },
         {
@@ -54,7 +54,7 @@ angular
           Text: 'Discover'
         },
         {
-          Url: 'http://boards.straightdope.com',
+          Url: 'https://boards.straightdope.com',
           Text: 'SDMB'
         },
         {
@@ -62,56 +62,44 @@ angular
           Text: 'PNC Points'
         },
         {
-          Url: 'http://xkcd.com',
+          Url: 'https://xkcd.com',
           Text: 'XKCD'
         },
         {
-          Url: 'http://www.youtube.com',
+          Url: 'https://www.youtube.com',
           Text: 'YouTube'
         },
         {
-          Url: 'http://en.wikipedia.org',
+          Url: 'https://en.wikipedia.org',
           Text: 'Wikipedia'
         },
         {
-          Url: 'http://www.imdb.com',
+          Url: 'https://www.imdb.com',
           Text: 'Internet Movie Database'
         },
         {
-          Url: 'http://www.barnesandnoble.com',
+          Url: 'https://www.barnesandnoble.com',
           Text: 'Barnes & Noble'
         },
         {
-          Url: 'http://www.amazon.com',
+          Url: 'https://www.amazon.com',
           Text: 'Amazon'
         },
         {
-          Url: 'http://www.ancestry.com',
-          Text: 'Ancestry'
+          Url: 'https://linkedin.com/games',
+          Text: 'LinkedIn Games'
         },
         {
           Url: 'http://10.0.0.1',
           Text: 'Router Login'
         },
         {
-          Url: 'http://10.0.0.2',
-          Text: 'Print Server'
+          Url: 'https://voip.ms/signin/index.php?ln=en',
+          Text: 'VoIP.ms'
         },
         {
           Url: 'http://10.0.0.3:5000',
           Text: 'NAS Server'
-        },
-        {
-          Url: 'https://office365.cmich.edu',
-          Text: 'Central E-mail'
-        },
-        {
-          Url: 'https://cdr.voiply.com/index/375b44f7-5024-4043-a7fb-137193c00800',
-          Text: 'Voiply Call History'
-        },
-        {
-          Url: 'http://blackboard.cmich.edu',
-          Text: 'Blackboard'
         }
       ];
     }
