@@ -50,8 +50,8 @@ angular
           Text: 'PNC Bank'
         },
         {
-          Url: 'https://www.discover.com',
-          Text: 'Discover'
+          Url: 'https://myaccounts.capitalone.com',
+          Text: 'Capital One'
         },
         {
           Url: 'https://boards.straightdope.com',
